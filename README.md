@@ -19,3 +19,5 @@
 **data_applied_methods**: same as **data** but with community assignments by the community detection methods
 
 **results**: contains fairness metric Phi and performance values
+
+**figures**: contains figures displaying the results
