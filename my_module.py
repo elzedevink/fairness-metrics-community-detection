@@ -8,6 +8,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import networkx as nx
+import matplotlib.pyplot as plt
 
 from cdlib import NodeClustering
 
@@ -57,9 +58,6 @@ def print_network_info(G, net_name, gt_coms=None):
 # - 'name'_edges.csv: adjlist of nodes
 # - 'name'_nodes.csv: list of nodes and their communities
 def store_network(G, name, path):
-    
-    pathlib.Path(path).mkdir(parents=True, exist_ok=True)
-
     file_str = path + '/' + name
 
     nx.write_adjlist(G, file_str+'_edges.csv', delimiter=',')
@@ -131,6 +129,22 @@ def get_network_communities(dir_path, net_name, request_node_clustering=True):
         comm_assignment_dict = df.to_dict('index')
 
     return G, comm_assignment_dict
+
+
+def save_or_show_fig(figure_str, save_fig):
+    if save_fig:
+        print(f'save fig: {figure_str}')
+        plt.savefig(figure_str, bbox_inches='tight', dpi=300)
+    else:
+        print(f'show fig: {figure_str}')
+        plt.show()
+    plt.close()
+
+
+def create_paths(paths):
+    for path in paths:
+        pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+        # print(a)
 
 
 def jaccard_sim(a, b):

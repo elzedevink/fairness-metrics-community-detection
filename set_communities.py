@@ -172,7 +172,6 @@ def apply_cdms(net_name, dir_path_input, dir_path_output):
     :param dir_path_output: directory where the network with applied CDMs goes
     """
     print(f'\nload {net_name}')
-    pathlib.Path(dir_path_output).mkdir(parents=True, exist_ok=True)
 
     # read G and dictionary of ground-truth communities
     G, comm_assignment_dict = get_network_communities(dir_path_input, net_name, 
@@ -211,26 +210,3 @@ def apply_cdms(net_name, dir_path_input, dir_path_output):
     
     file_path = dir_path_output+'/'+net_name
     save_new_assignment(G, file_path, comm_assignment_dict)
-
-
-if __name__ == '__main__':
-    p = Parser()
-    dir_name = p.directory
-    dir_path_input = path_prefix(dir_name, 'data')
-    dir_path_output = f'data_applied_methods/{remove_prefix(dir_path_input, "data/")}'
-    net_name = p.network
-
-    print(f'dir_path_input = {dir_path_input}, dir_path_output = {dir_path_output},\
-         net_name = {net_name}')
-
-    if net_name == None:
-        # get all network names in dir_name
-        files = os.listdir(dir_path_input)
-        net_names = sorted(list(set([file[:-10] for file in files 
-            if file[-10:] == '_nodes.csv'])))
-        
-        print('Networks run:', net_names)
-        for net_name in net_names:
-            apply_cdms(net_name, dir_path_input, dir_path_output)
-    else:
-        apply_cdms(net_name, dir_path_input, dir_path_output)

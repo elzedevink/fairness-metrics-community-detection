@@ -141,35 +141,3 @@ def result_hub(data_path, net_name, res_path, show=False, store=True):
                 pickle.dump(all_result_dict[attr], handle, protocol=pickle.HIGHEST_PROTOCOL)
         else:
             print(f'NOT saving {filename}\n')
-
-
-if __name__ == '__main__':
-    p = Parser()
-    dir_name = p.directory
-    net_name = p.network
-    dir_path_input = path_prefix(dir_name, 'data_applied_methods')
-    res_path = f'results/{remove_prefix(dir_name, "data_applied_methods/")}'
-
-    print('start get_results.py')
-    print(f'dir_path_input = {dir_path_input}, res_path = {res_path}, net_name = {net_name}')
-    
-    if not os.path.exists(dir_path_input):
-        print('Directory does not exist:', dir_path_input)
-        print('Did you forget "data_applied_methods"?')
-        exit()
-
-    if not os.path.exists(res_path):
-        os.makedirs(res_path)
-
-    if net_name == None:
-        # get all network names in dir_path_input        
-        files = os.listdir(dir_path_input)
-        net_names = sorted(list(set([file[:-10] for file in files 
-            if file[-10:] == '_nodes.csv'])), reverse=False)
-
-        print('Networks run:', net_names)
-        for net_name in net_names:
-            result_hub(dir_path_input, net_name, res_path)
-    else:
-        # use only the provided net_name (using -n ...)
-        result_hub(dir_path_input, net_name, res_path)
