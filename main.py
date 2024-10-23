@@ -87,5 +87,5 @@ def real_world_results():
 
 
 if __name__ == '__main__':
-    # LFR_example()
+    LFR_example()
     real_world_results()    
