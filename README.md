@@ -9,6 +9,8 @@
 
 **get_results.py**: Calculates fairness metric Phi for size, density, and conductance
 
+**create_figures.py**: gathers results, creates figures
+
 **my_module.py**: Helper functions
 
 **main.py**: Shows example of LFR network generation, CDM application and and prints fairness metric and performance values
