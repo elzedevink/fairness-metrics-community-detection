@@ -24,5 +24,6 @@
 
 **figures**: contains figures displaying the results
 
-![football_size_Phi_FCCN](https://github.com/user-attachments/assets/d6db00f6-027d-45e3-a223-bbeafc4bcae2)
+<img src="https://github.com/user-attachments/assets/d6db00f6-027d-45e3-a223-bbeafc4bcae2" alt="football_size_Phi_FCCN" width="450">
+
 Example of fairness analysis for the football network regarding size with FCCN as the community-wise performance metric.
